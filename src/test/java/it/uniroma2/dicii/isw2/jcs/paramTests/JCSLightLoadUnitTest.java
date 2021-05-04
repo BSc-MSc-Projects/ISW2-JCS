@@ -1,6 +1,14 @@
 package it.uniroma2.dicii.isw2.jcs.paramTests;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.apache.jcs.JCS;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+import junit.framework.Test;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -21,14 +29,16 @@ import org.apache.jcs.JCS;
  * under the License.
  */
 
-import junit.framework.Test;
+//import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 
 /**
  * Description of the Class
  *
  */
+
 public class JCSLightLoadUnitTest
     extends TestCase
 {
@@ -44,7 +54,14 @@ public class JCSLightLoadUnitTest
         JCS.setConfigFilename( "/TestSimpleLoad.ccf" );
         JCS.getInstance( "testCache1" );
     }
-
+    
+    /*@Parameters
+    public static Collection getItems() {
+    	return Arrays.asList(new Integer[][] {
+    			{2000}
+    	});
+    }
+    
     /**
      * Constructor for the TestSimpleLoad object
      *
@@ -84,6 +101,7 @@ public class JCSLightLoadUnitTest
      * @exception Exception
      *                Description of the Exception
      */
+    
     public void testSimpleLoad()
         throws Exception
     {
@@ -91,7 +109,6 @@ public class JCSLightLoadUnitTest
         //        ICompositeCacheAttributes cattr = jcs.getCacheAttributes();
         //        cattr.setMaxObjects( 20002 );
         //        jcs.setCacheAttributes( cattr );
-
         for ( int i = 1; i <= items; i++ )
         {
             jcs.put( i + ":key", "data" + i );
