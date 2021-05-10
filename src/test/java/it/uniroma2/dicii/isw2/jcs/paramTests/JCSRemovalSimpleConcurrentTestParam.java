@@ -4,37 +4,28 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.apache.jcs.JCS;
-import org.junit.BeforeClass;
+import org.apache.jcs.access.exception.CacheException;
+import org.junit.Before;
 import org.junit.Test;
 
 public class JCSRemovalSimpleConcurrentTestParam {
 	private int count;
-
-	@BeforeClass
-	public static void setUp() throws Exception {
+	private JCS jcs;
+	
+	@Before
+	public void configure() throws CacheException {
+		this.count = 500;
 		JCS.setConfigFilename( "/TestRemoval.ccf" );
 		JCS.getInstance( "testCache1" );
+		this.jcs = JCS.getInstance( "testCache1" );
 	}
-	
-	
-	public int configure() {
-		return 500;
-	}
-	
-	
-	public JCSRemovalSimpleConcurrentTestParam() {
-		this.count = configure();
-	}
-	
+
 	
 	@Test
 	public void testTwoDeepRemoval() throws Exception {
 
 		System.out.println( "------------------------------------------" );
 		System.out.println( "testTwoDeepRemoval" );
-
-		//int count = 500;
-		JCS jcs = JCS.getInstance( "testCache1" );
 
 		for ( int i = 0; i <= count; i++ ){
 			jcs.put( "key:" + i + ":anotherpart", "data" + i );
@@ -70,9 +61,6 @@ public class JCSRemovalSimpleConcurrentTestParam {
 		System.out.println( "------------------------------------------" );
 		System.out.println( "testSingleDepthRemoval" );
 
-		//int count = 500;
-		JCS jcs = JCS.getInstance( "testCache1" );
-
 		for ( int i = 0; i <= count; i++ ){
 			jcs.put( i + ":key", "data" + i );
 		}
@@ -106,9 +94,6 @@ public class JCSRemovalSimpleConcurrentTestParam {
 
 		System.out.println( "------------------------------------------" );
 		System.out.println( "testRemoveAll" );
-
-		//int count = 500;
-		JCS jcs = JCS.getInstance( "testCache1" );
 
 		for ( int i = 0; i <= count; i++ ){
 			jcs.put( i + ":key", "data" + i );
@@ -147,9 +132,6 @@ public class JCSRemovalSimpleConcurrentTestParam {
 
 		System.out.println( "------------------------------------------" );
 		System.out.println( "testRemoveAll" );
-
-		//int count = 500;
-		JCS jcs = JCS.getInstance( "testCache1" );
 
 		jcs.clear();
 
