@@ -8,13 +8,13 @@ import org.apache.jcs.access.exception.CacheException;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JCSRemovalSimpleConcurrentTestParam {
+public class TestJCSRemovalSimpleConcurrentParam {
 	private int count;
 	private JCS jcs;
 	
 	@Before
 	public void configure() throws CacheException {
-		this.count = 500;
+		this.count = 800;
 		JCS.setConfigFilename( "/TestRemoval.ccf" );
 		JCS.getInstance( "testCache1" );
 		this.jcs = JCS.getInstance( "testCache1" );

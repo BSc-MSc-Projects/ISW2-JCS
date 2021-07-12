@@ -8,17 +8,17 @@ import org.apache.jcs.access.exception.CacheException;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JCSLightLoadUnitTestParam {
+public class TestJCSLightLoadUnitParam {
 	
 	private int items;
 	private JCS jcs;
 	
 	@Before
 	public void configure() throws CacheException {
-		this.items = 20000;
+		this.items = 3000;
 		JCS.setConfigFilename( "/TestSimpleLoad.ccf" );
         JCS.getInstance( "testCache1" );
-        this.jcs = JCS.getInstance( "testCache1" );
+        //this.jcs = JCS.getInstance( "testCache1" );
 	}
 	
 	
@@ -30,7 +30,8 @@ public class JCSLightLoadUnitTestParam {
 	        //        ICompositeCacheAttributes cattr = jcs.getCacheAttributes();
 	        //        cattr.setMaxObjects( 20002 );
 	        //        jcs.setCacheAttributes( cattr );
-	        
+			this.jcs = JCS.getInstance( "testCache1" );
+		
 	        System.out.println("Running with items: " + items);
 	        
 	        for ( int i = 1; i <= items; i++ )
